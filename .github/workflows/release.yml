@@ -39,11 +39,11 @@ jobs:
             exit 0
           fi
           cat > release-notes.md <<'NOTES'
-          Fixes faint outlines when Thin strokes are used in small heatmap cells.
+          Makes Artist outlines cleaner in small heatmap cells.
 
-          - Outlines retain a minimum 1px width and no longer shrink with the SVG.
-          - Interior hatch strokes keep the selected Thin/Medium/Thick weight.
-          - Includes the Cartoonist rounded-corner fix from 0.13.1.
+          - Artist uses one outline pass while keeping its hand-drawn curvature.
+          - Cartoonist retains double outlines; hatch fill weights are unchanged.
+          - Retains the minimum 1px outline and rounded-corner fixes.
 
           BRAT repository: `quannguyen83/obsidian-contribution-graph`.
           Validation: TypeScript build and DOM regression tests passed; not visually verified in Obsidian.

@@ -56,6 +56,16 @@ const assert = require('node:assert/strict');
   assert.equal(hatch.getAttribute('vector-effect'),null);
   assert.equal(Number(hatch.getAttribute('stroke-width')),strokeWidth/2);
  }
+ const outlinePasses=[];
+ for (const roughness of [1,2]) {
+  const graph=w.document.createElement('div');
+  graph.innerHTML='<div class="cell" data-date="2026-09-28"></div>';
+  w.sketch.decorateSketchGraph(graph,{enabled:true,roughness});
+  const outline=[...graph.querySelectorAll('svg path')].find(p=>p.getAttribute('stroke')==='var(--text-muted)');
+  outlinePasses.push((outline.getAttribute('d').match(/M/g)||[]).length);
+ }
+ assert.ok(outlinePasses[0]>0);
+ assert.ok(outlinePasses[0]<outlinePasses[1],'Artist should use fewer outline passes than Cartoonist');
  const invalid=w.sketch.sketchOptions({roughness:NaN,strokeWidth:-5,fillStyle:'invalid'},1);
  assert.equal(invalid.strokeWidth,0.5);assert.equal(invalid.fillStyle,'hachure');assert.ok(Number.isFinite(invalid.roughness));
  await compile('src/render/renders.ts','renders',[{name:'obsidian-test-shim',setup(b){b.onResolve({filter:/^obsidian$/},()=>({path:'obsidian',namespace:'shim'}));b.onLoad({filter:/.*/,namespace:'shim'},()=>({contents:'export { default as moment } from "moment";',resolveDir:process.cwd()}));}}]);

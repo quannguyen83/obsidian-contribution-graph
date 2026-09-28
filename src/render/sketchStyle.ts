@@ -20,6 +20,9 @@ export function sketchOptions(style: SketchStyle, seed: number, fill?: string, c
 		seed, strokeWidth, fillWeight: strokeWidth / 2,
 		hachureGap: strokeWidth * 4, roughness: roughness / 2,
 		preserveVertices: continuousPath || roughness < 2,
+		// A second outline pass looks blurred at heatmap sizes. Keep it only
+		// for the deliberately rough Cartoonist preset; fill strokes are unchanged.
+		disableMultiStroke: roughness < 2,
 		stroke: "var(--text-muted)", fill,
 		fillStyle: ["solid", "hachure", "cross-hatch"].includes(style.fillStyle || "")
 			? style.fillStyle! : "hachure",
