@@ -39,14 +39,14 @@ jobs:
             exit 0
           fi
           cat > release-notes.md <<'NOTES'
-          Fixes separated/jittering corners in Cartoonist mode for rounded heatmap cells.
+          Fixes faint outlines when Thin strokes are used in small heatmap cells.
 
-          Rounded rectangles now preserve shared endpoints, following Excalidraw's continuous-path configuration.
-          All three sloppiness levels and fill styles are covered by DOM regression tests.
+          - Outlines retain a minimum 1px width and no longer shrink with the SVG.
+          - Interior hatch strokes keep the selected Thin/Medium/Thick weight.
+          - Includes the Cartoonist rounded-corner fix from 0.13.1.
 
           BRAT repository: `quannguyen83/obsidian-contribution-graph`.
-          Plugin ID: `sketch-contribution-graph`.
-          Validation: TypeScript build and DOM regression tests passed. Appearance still needs checking inside Obsidian.
+          Validation: TypeScript build and DOM regression tests passed; not visually verified in Obsidian.
           NOTES
           gh release create "$version" main.js manifest.json styles.css \
             --target "$GITHUB_SHA" --title "$version — Sketch Contribution Graph" \

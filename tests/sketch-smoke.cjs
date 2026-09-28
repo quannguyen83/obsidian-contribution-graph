@@ -43,6 +43,19 @@ const assert = require('node:assert/strict');
   assert.equal(rounded.roughness,roughness/2);
  }
  assert.equal(w.sketch.sketchOptions({roughness:2},123,'#63aa82',false).preserveVertices,false);
+ for (const strokeWidth of [0.5, 1, 2]) {
+  const graph=w.document.createElement('div');
+  graph.innerHTML='<div class="cell" data-date="2026-09-28" style="background-color:#63aa82"></div>';
+  w.sketch.decorateSketchGraph(graph,{enabled:true,strokeWidth,fillStyle:'hachure'});
+  const paths=[...graph.querySelectorAll('svg path')];
+  const outline=paths.find(p=>p.getAttribute('stroke')==='var(--text-muted)');
+  const hatch=paths.find(p=>p.getAttribute('stroke')!=='var(--text-muted)');
+  assert.ok(outline);assert.ok(hatch);
+  assert.equal(outline.getAttribute('vector-effect'),'non-scaling-stroke');
+  assert.equal(Number(outline.getAttribute('stroke-width')),Math.max(1,strokeWidth));
+  assert.equal(hatch.getAttribute('vector-effect'),null);
+  assert.equal(Number(hatch.getAttribute('stroke-width')),strokeWidth/2);
+ }
  const invalid=w.sketch.sketchOptions({roughness:NaN,strokeWidth:-5,fillStyle:'invalid'},1);
  assert.equal(invalid.strokeWidth,0.5);assert.equal(invalid.fillStyle,'hachure');assert.ok(Number.isFinite(invalid.roughness));
  await compile('src/render/renders.ts','renders',[{name:'obsidian-test-shim',setup(b){b.onResolve({filter:/^obsidian$/},()=>({path:'obsidian',namespace:'shim'}));b.onLoad({filter:/.*/,namespace:'shim'},()=>({contents:'export { default as moment } from "moment";',resolveDir:process.cwd()}));}}]);

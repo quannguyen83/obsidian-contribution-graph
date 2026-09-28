@@ -51,6 +51,14 @@ export function decorateSketchGraph(graph: HTMLElement, style?: SketchStyle): vo
 			: rounded
 				? rc.path("M 5 2.5 H 19 Q 21.5 2.5 21.5 5 V 19 Q 21.5 21.5 19 21.5 H 5 Q 2.5 21.5 2.5 19 V 5 Q 2.5 2.5 5 2.5 Z", options)
 				: rc.rectangle(2.5, 2.5, 19, 19, options);
+		// Keep the outline legible in small heatmap cells. Only the outline
+		// is screen-sized; hatch strokes retain their selected Thin/Medium/Thick weight.
+		shape.querySelectorAll("path").forEach(path => {
+			if (path.getAttribute("stroke") === options.stroke) {
+				path.setAttribute("vector-effect", "non-scaling-stroke");
+				path.setAttribute("stroke-width", String(Math.max(1, options.strokeWidth)));
+			}
+		});
 		svg.appendChild(shape);
 		const label = document.createElement("span");
 		label.className = "sketch-cell-label";
