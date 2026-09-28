@@ -1,6 +1,14 @@
 import { DEFAULT_RULES } from "./constants";
 
+export interface SketchStyle {
+	enabled?: boolean;
+	fillStyle?: "solid" | "hachure" | "cross-hatch";
+	roughness?: number;
+	strokeWidth?: number;
+}
+
 export class ContributionGraphConfig {
+	sketchStyle?: SketchStyle;
 	/**
 	 * the title of the graph
 	 */

@@ -2,6 +2,7 @@ import { isZh } from "src/i18/messages";
 import { DataSource } from "src/query/types";
 import {
 	Contribution,
+	SketchStyle,
 	CellStyleRule,
 	ContributionGraphConfig,
 } from "src/types";
@@ -21,6 +22,7 @@ import {
 } from "src/util/dateUtils";
 
 export class YamlGraphConfig {
+	sketchStyle?: SketchStyle;
 	/**
 	 * basic settings
 	 */

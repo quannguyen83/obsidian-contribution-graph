@@ -988,3 +988,24 @@
 	background: var(--interactive-accent);
 	color: var(--text-on-accent);
 }
+
+/* SVG scales with the existing cell layout, including hidden panes and popouts. */
+.contribution-graph .cell.sketch-cell {
+  position: relative;
+  background: transparent !important;
+  border: none;
+  overflow: visible;
+}
+.contribution-graph .sketch-cell-art {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: visible;
+}
+.contribution-graph .sketch-cell-label {
+  position: relative;
+  z-index: 1;
+  pointer-events: none;
+}

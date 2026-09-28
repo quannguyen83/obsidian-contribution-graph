@@ -1,3 +1,57 @@
+# Contribution Graph — Excalidraw-style fork
+
+This fork of [vran-dev/obsidian-contribution-graph](https://github.com/vran-dev/obsidian-contribution-graph) adds optional hand-drawn cells using Rough.js and drawing options adapted from Excalidraw. Existing queries, date layouts, color rules, tooltips and click actions are retained.
+
+## Enable the new style
+
+1. Create a heatmap with **Add Heatmap**, or edit an existing heatmap.
+2. Open **Style Settings** and choose **Drawing style → Excalidraw-style**.
+3. Choose **Fill style**: Solid, Hachure, or Cross-hatch.
+4. Choose **Sloppiness**: Architect, Artist, or Cartoonist, and a stroke width.
+5. Click **Preview**, then **Save**.
+
+All new controls are in English. Standard remains the default for existing notes. No Excalidraw plugin, API key, or network connection is required for drawing. Dataview is still required by the original plugin's note-query workflow.
+
+### Configuration
+
+Add this to an existing `contributionGraph` block, or pass it to the existing DataviewJS graph API:
+
+```yaml
+sketchStyle:
+  enabled: true
+  fillStyle: hachure
+  roughness: 1
+  strokeWidth: 1
+```
+
+| Option | Values | Default |
+| --- | --- | --- |
+| `enabled` | `true`, `false` | `false` |
+| `fillStyle` | `solid`, `hachure`, `cross-hatch` | `hachure` |
+| `roughness` | 0 (Architect), 1 (Artist), 2 (Cartoonist) | 1 |
+| `strokeWidth` | 0.5 (Thin), 1 (Medium), 2 (Thick) | 1 |
+
+Works with Git-style, Month Track and Calendar layouts, including the color legend. Colors and text come from existing cell rules. Days without a fill rule have an outline only. Date seeds keep each day's drawing stable across renders. SVGs scale with their cells without background timers or observers; very stretched cells also stretch the drawn strokes. Existing round/circle presets are represented with rounded paths/ellipses.
+
+The style adapts Excalidraw's small-shape roughness, fill-weight and hatch-spacing settings. It is not the full Excalidraw editor and does not create editable `.excalidraw` files. Fonts remain those of your Obsidian theme. See [third-party notices](THIRD_PARTY_NOTICES.md).
+
+## Build and install this fork
+
+```sh
+npm ci
+npm run build
+# DOM regression checks:
+node tests/sketch-smoke.cjs
+```
+
+Copy `main.js`, `manifest.json`, and `styles.css` into your vault's `.obsidian/plugins/contribution-graph/` folder, then reload the plugin. This fork keeps the original plugin ID: use it **instead of** the upstream plugin. Upstream updates can replace this fork. BRAT installation requires a GitHub release containing those three files; a source commit alone is not a BRAT release.
+
+## Original documentation
+
+The upstream documentation and screenshots below describe the existing features.
+
+---
+
 
 ![](attachment/d20ba90e31c16a3c4d79cba9298577de.png)
 

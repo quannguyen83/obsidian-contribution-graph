@@ -1,3 +1,4 @@
+import { SketchStyleForm } from "./SketchStyleForm";
 import { useRef, useState } from "react";
 import { CodeBlockProcessor } from "src/processor/codeBlockProcessor";
 import { CellStyleRule } from "src/types";
@@ -338,6 +339,7 @@ export function GraphForm(props: {
 						children: (
 							<div className="contribution-graph-modal-form">
 								<div className="form-group">
+									<SketchStyleForm value={formData.sketchStyle} onChange={(value) => changeFormData("sketchStyle", value)} />
 									<div className="form-item">
 										<span className="label">
 											{local.form_title_font_size_label}

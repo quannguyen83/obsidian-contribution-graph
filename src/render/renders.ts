@@ -1,3 +1,4 @@
+import { decorateSketchGraph } from "./sketchStyle";
 import { ContributionGraphConfig } from "src/types";
 import { CalendarGraphRender } from "./calendarGraphRender";
 import { MonthTrackGraphRender } from "./monthTrackGraphRender";
@@ -22,6 +23,8 @@ export class Renders {
 		);
 		if (render) {
 			render.render(container, graphConfig);
+			const graph = container.lastElementChild;
+			if (graph instanceof HTMLElement) decorateSketchGraph(graph, graphConfig.sketchStyle);
 		} else {
 			this.renderErrorTips(
 				container,
