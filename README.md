@@ -6,7 +6,7 @@ This fork adds an optional **Excalidraw-style** appearance in **Style Settings**
 
 - **Fill:** Solid, Hachure, or Cross-hatch.
 - **Sloppiness:** Architect, Artist, or Cartoonist.
-- **Stroke width:** Thin, Medium, or Thick.
+- **Fill stroke width:** Thin, Medium, or Thick; outlines always use Thick (2px).
 - Hand-drawn cells and color legends across all three graph layouts.
 
 Uses Rough.js with drawing options adapted from Excalidraw. Standard remains the default; existing data queries and interactions are retained. No Excalidraw plugin is required.

@@ -1,7 +1,7 @@
 {
   "id": "sketch-contribution-graph",
   "name": "Sketch Contribution Graph",
-  "version": "0.13.3",
+  "version": "0.13.4",
   "minAppVersion": "1.3.0",
   "description": "Interactive heatmaps with optional Excalidraw-style cells and fills. Fork of vran-dev's Contribution Graph.",
   "author": "vran",

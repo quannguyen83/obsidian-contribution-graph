@@ -37,9 +37,9 @@ export function SketchStyleForm({ value = {}, onChange }: {
 				</div>
 			</div>
 			<div className="form-item">
-				<span className="label">Stroke width</span>
+				<span className="label">Fill stroke width</span>
 				<div className="form-content">
-					<select aria-label="Stroke width" value={value.strokeWidth ?? 1}
+					<select aria-label="Fill stroke width" value={value.strokeWidth ?? 1}
 						onChange={e => onChange({ ...value, strokeWidth: Number(e.target.value) })}>
 						<option value={0.5}>Thin</option><option value={1}>Medium</option><option value={2}>Thick</option>
 					</select>

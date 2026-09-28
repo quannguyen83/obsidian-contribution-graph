@@ -39,14 +39,12 @@ jobs:
             exit 0
           fi
           cat > release-notes.md <<'NOTES'
-          Makes Artist outlines cleaner in small heatmap cells.
+          All sketch cell and legend outlines now use Thick (2px), regardless of the fill stroke setting.
 
-          - Artist uses one outline pass while keeping its hand-drawn curvature.
-          - Cartoonist retains double outlines; hatch fill weights are unchanged.
-          - Retains the minimum 1px outline and rounded-corner fixes.
+          Thin/Medium/Thick controls only interior fill strokes. The control is now labeled Fill stroke width.
 
           BRAT repository: `quannguyen83/obsidian-contribution-graph`.
-          Validation: TypeScript build and DOM regression tests passed; not visually verified in Obsidian.
+          Validation: TypeScript build and DOM regression tests passed.
           NOTES
           gh release create "$version" main.js manifest.json styles.css \
             --target "$GITHUB_SHA" --title "$version — Sketch Contribution Graph" \

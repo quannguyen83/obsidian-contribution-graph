@@ -52,7 +52,7 @@ const assert = require('node:assert/strict');
   const hatch=paths.find(p=>p.getAttribute('stroke')!=='var(--text-muted)');
   assert.ok(outline);assert.ok(hatch);
   assert.equal(outline.getAttribute('vector-effect'),'non-scaling-stroke');
-  assert.equal(Number(outline.getAttribute('stroke-width')),Math.max(1,strokeWidth));
+  assert.equal(Number(outline.getAttribute('stroke-width')),2);
   assert.equal(hatch.getAttribute('vector-effect'),null);
   assert.equal(Number(hatch.getAttribute('stroke-width')),strokeWidth/2);
  }
