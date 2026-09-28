@@ -13,13 +13,13 @@ export function dateSeed(value: string): number {
 
 // Adapted from Excalidraw's generateRoughOptions/adjustRoughness.
 // See THIRD_PARTY_NOTICES.md. The normalized 24px cell uses its small-shape adjustment.
-export function sketchOptions(style: SketchStyle, seed: number, fill?: string) {
+export function sketchOptions(style: SketchStyle, seed: number, fill?: string, continuousPath = false) {
 	const strokeWidth = bounded(style.strokeWidth, 1, 0.5, 2);
 	const roughness = bounded(style.roughness, 1, 0, 2);
 	return {
 		seed, strokeWidth, fillWeight: strokeWidth / 2,
 		hachureGap: strokeWidth * 4, roughness: roughness / 2,
-		preserveVertices: roughness < 2,
+		preserveVertices: continuousPath || roughness < 2,
 		stroke: "var(--text-muted)", fill,
 		fillStyle: ["solid", "hachure", "cross-hatch"].includes(style.fillStyle || "")
 			? style.fillStyle! : "hachure",
@@ -40,12 +40,15 @@ export function decorateSketchGraph(graph: HTMLElement, style?: SketchStyle): vo
 		svg.setAttribute("aria-hidden", "true");
 		svg.classList.add("sketch-cell-art");
 		const fill = cell.style.backgroundColor || undefined;
-		const options = sketchOptions(style, dateSeed(cell.dataset.date || `legend-${index}`), fill);
-		const rc = rough.svg(svg);
 		const radius = cell.style.borderRadius;
+		const rounded = radius !== "50%" && radius !== "0" && radius !== "0px" && radius !== "0%";
+		// Excalidraw passes continuousPath=true for rounded rectangles, even
+		// in Cartoonist mode: adjoining line/curve endpoints must stay joined.
+		const options = sketchOptions(style, dateSeed(cell.dataset.date || `legend-${index}`), fill, rounded);
+		const rc = rough.svg(svg);
 		const shape = radius === "50%"
 			? rc.ellipse(12, 12, 19, 19, options)
-			: radius !== "0" && radius !== "0px" && radius !== "0%"
+			: rounded
 				? rc.path("M 5 2.5 H 19 Q 21.5 2.5 21.5 5 V 19 Q 21.5 21.5 19 21.5 H 5 Q 2.5 21.5 2.5 19 V 5 Q 2.5 2.5 5 2.5 Z", options)
 				: rc.rectangle(2.5, 2.5, 19, 19, options);
 		svg.appendChild(shape);

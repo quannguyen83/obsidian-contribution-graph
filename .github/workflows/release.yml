@@ -39,21 +39,14 @@ jobs:
             exit 0
           fi
           cat > release-notes.md <<'NOTES'
-          Renames this fork to Sketch Contribution Graph with a separate plugin ID.
+          Fixes separated/jittering corners in Cartoonist mode for rounded heatmap cells.
 
-          - Solid, Hachure and Cross-hatch fills.
-          - Architect, Artist and Cartoonist sloppiness.
-          - Thin, Medium and Thick strokes.
-          - Available under Style Settings → Drawing style → Excalidraw-style.
-          - Supports all three layouts and color legends; Standard remains the default.
+          Rounded rectangles now preserve shared endpoints, following Excalidraw's continuous-path configuration.
+          All three sloppiness levels and fill styles are covered by DOM regression tests.
 
           BRAT repository: `quannguyen83/obsidian-contribution-graph`.
-          Plugin ID: `sketch-contribution-graph`. Command: Add Sketch Heatmap.
-          Codeblock: `sketchContributionGraph`. API: `renderSketchContributionGraph`.
-          Upgrading from 0.12.0: remove and re-add the BRAT entry, then update the codeblock/API names in your notes. Configuration is unchanged.
-          Upstream: vran-dev/obsidian-contribution-graph. Drawing options adapted from Excalidraw using Rough.js.
-
-          Validation: TypeScript build and DOM regression checks passed. Not yet visually verified inside Obsidian.
+          Plugin ID: `sketch-contribution-graph`.
+          Validation: TypeScript build and DOM regression tests passed. Appearance still needs checking inside Obsidian.
           NOTES
           gh release create "$version" main.js manifest.json styles.css \
             --target "$GITHUB_SHA" --title "$version — Sketch Contribution Graph" \
