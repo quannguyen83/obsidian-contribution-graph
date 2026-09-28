@@ -8,6 +8,8 @@ export interface SketchStyle {
 }
 
 export class ContributionGraphConfig {
+	font?: "default" | "handwritten" | "custom";
+	customFont?: string;
 	sketchStyle?: SketchStyle;
 	/**
 	 * the title of the graph

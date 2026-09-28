@@ -39,12 +39,18 @@ jobs:
             exit 0
           fi
           cat > release-notes.md <<'NOTES'
-          All sketch cell and legend outlines now use Thick (2px), regardless of the fill stroke setting.
+          Adds a Font selector under Style Settings for all graph text.
 
-          Thin/Medium/Thick controls only interior fill strokes. The control is now labeled Fill stroke width.
+          - Default: inherit the Obsidian theme font.
+          - Handwritten: bundled Virgil font, available offline without Excalidraw.
+          - Custom: enter a font installed on your device, e.g. Segoe Print.
+          - Works with Standard and Excalidraw-style graphs across all layouts.
+          - Existing notes retain the theme font by default.
 
+          YAML/API options: `font: handwritten` or `font: custom` with `customFont: Segoe Print`.
+          Virgil by Ellinor Rapp is included under SIL OFL 1.1; its license is embedded in styles.css.
           BRAT repository: `quannguyen83/obsidian-contribution-graph`.
-          Validation: TypeScript build and DOM regression tests passed.
+          Validation: TypeScript build and DOM regression tests passed; not visually verified in Obsidian.
           NOTES
           gh release create "$version" main.js manifest.json styles.css \
             --target "$GITHUB_SHA" --title "$version — Sketch Contribution Graph" \

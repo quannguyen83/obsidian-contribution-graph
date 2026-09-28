@@ -52,3 +52,10 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+
+## Virgil font
+
+Bundled from Excalidraw's `packages/excalidraw/fonts/Virgil/Virgil-Regular.woff2`.
+Source: https://github.com/excalidraw/excalidraw/tree/master/packages/excalidraw/fonts/Virgil
+Virgil was created by Ellinor Rapp and is licensed under the SIL Open Font License 1.1, included in `assets/fonts/LICENSE.md` and the compiled stylesheet. The font is embedded in the compiled stylesheet for offline use.

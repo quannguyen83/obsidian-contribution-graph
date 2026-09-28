@@ -1,3 +1,4 @@
+import { applyGraphFont } from "./graphFont";
 import { decorateSketchGraph } from "./sketchStyle";
 import { ContributionGraphConfig } from "src/types";
 import { CalendarGraphRender } from "./calendarGraphRender";
@@ -24,7 +25,10 @@ export class Renders {
 		if (render) {
 			render.render(container, graphConfig);
 			const graph = container.lastElementChild;
-			if (graph instanceof HTMLElement) decorateSketchGraph(graph, graphConfig.sketchStyle);
+			if (graph instanceof HTMLElement) {
+				applyGraphFont(graph, graphConfig);
+				decorateSketchGraph(graph, graphConfig.sketchStyle);
+			}
 		} else {
 			this.renderErrorTips(
 				container,

@@ -1,3 +1,4 @@
+import { FontStyleForm } from "./FontStyleForm";
 import { SketchStyleForm } from "./SketchStyleForm";
 import { useRef, useState } from "react";
 import { CodeBlockProcessor } from "src/processor/codeBlockProcessor";
@@ -339,6 +340,7 @@ export function GraphForm(props: {
 						children: (
 							<div className="sketch-contribution-graph-modal-form">
 								<div className="form-group">
+									<FontStyleForm font={formData.font} customFont={formData.customFont} onFontChange={(value) => changeFormData("font", value)} onCustomFontChange={(value) => changeFormData("customFont", value)} />
 									<SketchStyleForm value={formData.sketchStyle} onChange={(value) => changeFormData("sketchStyle", value)} />
 									<div className="form-item">
 										<span className="label">

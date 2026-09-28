@@ -22,6 +22,8 @@ import {
 } from "src/util/dateUtils";
 
 export class YamlGraphConfig {
+	font?: "default" | "handwritten" | "custom";
+	customFont?: string;
 	sketchStyle?: SketchStyle;
 	/**
 	 * basic settings

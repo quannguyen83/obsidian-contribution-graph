@@ -4,6 +4,7 @@ Fork of [Contribution Graph](https://github.com/vran-dev/obsidian-contribution-g
 
 This fork adds an optional **Excalidraw-style** appearance in **Style Settings**:
 
+- **Font:** Default, Handwritten (bundled Virgil), or a custom installed font; applies to all graph text.
 - **Fill:** Solid, Hachure, or Cross-hatch.
 - **Sloppiness:** Architect, Artist, or Cartoonist.
 - **Fill stroke width:** Thin, Medium, or Thick; outlines always use Thick (2px).

@@ -11,6 +11,16 @@ const assert = require('node:assert/strict');
   w.eval(result.outputFiles[0].text);
  };
  await compile('src/render/sketchStyle.ts','sketch');
+ await compile('src/render/graphFont.ts','fonts');
+ const fontRoot=w.document.createElement('div');
+ w.fonts.applyGraphFont(fontRoot,{font:'handwritten'});
+ assert.ok(fontRoot.style.fontFamily.includes('Sketch Heatmap Virgil'));
+ w.fonts.applyGraphFont(fontRoot,{font:'custom',customFont:'Segoe Print'});
+ assert.ok(fontRoot.style.fontFamily.includes('Segoe Print'));
+ w.fonts.applyGraphFont(fontRoot,{font:'default'});
+ assert.equal(fontRoot.style.fontFamily,'');
+ w.fonts.applyGraphFont(fontRoot,{font:'custom',customFont:'  '});
+ assert.equal(fontRoot.style.fontFamily,'');
  let clicks=0;
  const drawings=[];
  for(const roughness of [0,1,2]) for(const fillStyle of ['solid','hachure','cross-hatch']) {
@@ -74,7 +84,8 @@ const assert = require('node:assert/strict');
  w.HTMLElement.prototype.empty=function(){this.replaceChildren()};
  for(const graphType of ['default','month-track','calendar']) {
   const root=w.document.createElement('div');w.document.body.append(root);
-  w.renders.Renders.render(root,{graphType,fromDate:'2026-09-01',toDate:'2026-09-30',data:[{date:'2026-09-28',value:2}],sketchStyle:{enabled:true,fillStyle:'cross-hatch'}});
+  w.renders.Renders.render(root,{graphType,fromDate:'2026-09-01',toDate:'2026-09-30',data:[{date:'2026-09-28',value:2}],font:'handwritten',sketchStyle:{enabled:true,fillStyle:'cross-hatch'}});
+  assert.ok(root.firstElementChild.style.fontFamily.includes('Sketch Heatmap Virgil'));
   assert.ok(root.querySelector('.cell[data-date="2026-09-28"] svg'),graphType);
   assert.equal(root.querySelectorAll('.cell[data-date]').length,30);
   assert.equal(root.querySelectorAll('.cell[data-date] svg').length,30);
