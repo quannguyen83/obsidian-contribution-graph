@@ -14,7 +14,7 @@ export function Choose(props: {
 		onChoose(option);
 	};
 	return (
-		<div className="contribution-graph-choose">
+		<div className="sketch-contribution-graph-choose">
 			{data.map((option) => (
 				<div
 					key={option.value}

@@ -6,7 +6,7 @@ export class Zh implements Local {
     /**
      * context menu
      */
-    context_menu_create = "新建热力图";
+    context_menu_create = "Add Sketch Heatmap";
 
     /**
      * form

@@ -17,7 +17,7 @@ export default class ContributionGraph extends Plugin {
 
 	onunload() {
 		// @ts-ignore
-		window.renderContributionGraph = undefined;
+		window.renderSketchContributionGraph = undefined;
 	}
 
 	registerContextMenu() {
@@ -36,7 +36,7 @@ export default class ContributionGraph extends Plugin {
 
 	registerGlobalRenderApi() {
 		//@ts-ignore
-		window.renderContributionGraph = (
+		window.renderSketchContributionGraph = (
 			container: HTMLElement,
 			graphConfig: ContributionGraphConfig
 		): void => {
@@ -46,7 +46,7 @@ export default class ContributionGraph extends Plugin {
 
 	registerCodeblockProcessor() {
 		this.registerMarkdownCodeBlockProcessor(
-			"contributionGraph",
+			"sketchContributionGraph",
 			(code, el, ctx) => {
 				const processor = new CodeBlockProcessor();
 				processor.renderFromCodeBlock(code, el, ctx, this.app);

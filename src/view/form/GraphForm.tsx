@@ -133,7 +133,7 @@ export function GraphForm(props: {
 					{
 						title: local.form_basic_settings,
 						children: (
-							<div className="contribution-graph-modal-form">
+							<div className="sketch-contribution-graph-modal-form">
 								<div className="form-group">
 									<div className="form-item">
 										<span className="label">
@@ -337,7 +337,7 @@ export function GraphForm(props: {
 					{
 						title: local.form_style_settings,
 						children: (
-							<div className="contribution-graph-modal-form">
+							<div className="sketch-contribution-graph-modal-form">
 								<div className="form-group">
 									<SketchStyleForm value={formData.sketchStyle} onChange={(value) => changeFormData("sketchStyle", value)} />
 									<div className="form-item">
@@ -703,7 +703,7 @@ export function GraphForm(props: {
 					},
 				]}
 			></Tab>
-			<div className="contribution-graph-modal-form">
+			<div className="sketch-contribution-graph-modal-form">
 				<div
 					className="preview-container"
 					ref={previewContainerRef}

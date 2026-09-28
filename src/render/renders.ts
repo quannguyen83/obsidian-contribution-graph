@@ -41,7 +41,7 @@ export class Renders {
 	static renderErrorTips(container: HTMLElement, summary: string, recommends?: string[]): void {
 		container.empty();
 		const errDiv = createDiv({
-			cls: "contribution-graph-render-error-container",
+			cls: "sketch-contribution-graph-render-error-container",
 			parent: container
 		});
 

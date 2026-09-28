@@ -14,7 +14,7 @@ const assert = require('node:assert/strict');
  let clicks=0;
  const drawings=[];
  for(const fillStyle of ['solid','hachure','cross-hatch']) {
-  const graph=w.document.createElement('div');graph.className='contribution-graph';
+  const graph=w.document.createElement('div');graph.className='sketch-contribution-graph';
   graph.innerHTML='<div class="cell" data-date="2026-09-28" style="background-color:#63aa82">A</div><div class="cell empty" data-date="2026-09-27"></div><div class="cell hole"></div><div class="cell-rule-indicator-container"><div class="cell" style="background-color:#63aa82"></div><div class="cell text">more</div></div>';
   w.document.body.append(graph);graph.firstChild.onclick=()=>clicks++;
   const original=graph.innerHTML;w.sketch.decorateSketchGraph(graph);assert.equal(graph.innerHTML,original);

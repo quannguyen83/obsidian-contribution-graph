@@ -39,7 +39,7 @@ jobs:
             exit 0
           fi
           cat > release-notes.md <<'NOTES'
-          Adds optional Excalidraw-style heatmap cells to Contribution Graph.
+          Renames this fork to Sketch Contribution Graph with a separate plugin ID.
 
           - Solid, Hachure and Cross-hatch fills.
           - Architect, Artist and Cartoonist sloppiness.
@@ -48,11 +48,13 @@ jobs:
           - Supports all three layouts and color legends; Standard remains the default.
 
           BRAT repository: `quannguyen83/obsidian-contribution-graph`.
-          This fork retains the `contribution-graph` plugin ID and replaces the upstream installation.
+          Plugin ID: `sketch-contribution-graph`. Command: Add Sketch Heatmap.
+          Codeblock: `sketchContributionGraph`. API: `renderSketchContributionGraph`.
+          Upgrading from 0.12.0: remove and re-add the BRAT entry, then update the codeblock/API names in your notes. Configuration is unchanged.
           Upstream: vran-dev/obsidian-contribution-graph. Drawing options adapted from Excalidraw using Rough.js.
 
           Validation: TypeScript build and DOM regression checks passed. Not yet visually verified inside Obsidian.
           NOTES
           gh release create "$version" main.js manifest.json styles.css \
-            --target "$GITHUB_SHA" --title "$version — Excalidraw-style heatmap" \
+            --target "$GITHUB_SHA" --title "$version — Sketch Contribution Graph" \
             --notes-file release-notes.md --latest

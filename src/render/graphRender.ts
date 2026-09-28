@@ -30,7 +30,7 @@ export abstract class BaseGraphRender implements GraphRender {
 
 	createGraphEl(root: HTMLElement): HTMLDivElement {
 		return createDiv({
-			cls: "contribution-graph",
+			cls: "sketch-contribution-graph",
 			parent: root,
 		});
 	}

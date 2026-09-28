@@ -4,7 +4,7 @@
 
 Please note two points
 
-- All configuration is placed within the `contributionGraph` **codeblock**
+- All configuration is placed within the `sketchContributionGraph` **codeblock**
 - Configuration is essentially using the [yaml](https://yaml.org/) format
 
 ![](attachment/75cbb797dc58593b204e3e1b47d7146e.png)
@@ -231,11 +231,11 @@ showCellRuleIndicators: false
 
 If you are familiar with javascript, you can use the contribution Graph API through dataviewJS to access more advanced features.
 
-contribution Graph Exposed a global function named `renderContributionGraph`, It is defined as follows.
+contribution Graph Exposed a global function named `renderSketchContributionGraph`, It is defined as follows.
 
 
 ```js
-function renderContributionGraph(container: HTMLElement, config: ContributionGraphConfig): void
+function renderSketchContributionGraph(container: HTMLElement, config: ContributionGraphConfig): void
 ```
 
 If you want to see more api's, use cases, see [README_ADVANCED.md](README_ADVANCED.md). 

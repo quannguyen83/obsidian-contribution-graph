@@ -63,7 +63,7 @@ export class ContributionGraphCreateModal extends Modal {
 				if (ignoreLanguagePrefix) {
 					editor.replaceSelection(stringifyYaml(yamlGraphConfig));
 				} else {
-					const codeblock = `\`\`\`contributionGraph\n${stringifyYaml(
+					const codeblock = `\`\`\`sketchContributionGraph\n${stringifyYaml(
 						yamlGraphConfig
 					)}\n\`\`\`\n`;
 					editor.replaceSelection(codeblock);

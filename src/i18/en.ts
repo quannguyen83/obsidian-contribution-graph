@@ -7,7 +7,7 @@ export class En implements Local {
     /**
      * context menu
      */
-    context_menu_create = "Add Heatmap";
+    context_menu_create = "Add Sketch Heatmap";
 
     /**
      * form

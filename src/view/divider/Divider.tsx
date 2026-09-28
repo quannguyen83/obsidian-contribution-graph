@@ -1,6 +1,6 @@
 export function Divider(props: { text?: string }) {
 	return (
-		<div className="contribution-graph-divider">
+		<div className="sketch-contribution-graph-divider">
 			<div></div>
 			{props.text && (
 				<>

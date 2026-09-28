@@ -7,7 +7,7 @@ export function mountEditButtonToCodeblock(
 	codeblockDom: HTMLElement
 ) {
 	const formEditButton = document.createElement("div");
-	formEditButton.className = "contribution-graph-codeblock-edit-button";
+	formEditButton.className = "sketch-contribution-graph-codeblock-edit-button";
 	const iconEl = getIcon("gantt-chart");
 	if (iconEl) {
 		formEditButton.appendChild(iconEl);
@@ -35,7 +35,7 @@ export function mountEditButtonToCodeblock(
 			// @ts-ignore
 			const editorView = editor.cm as EditorView;
 			const pos = editorView.posAtDOM(codeblockDom);
-			const start = pos + "```contributionGraph\n".length;
+			const start = pos + "```sketchContributionGraph\n".length;
 			// set selection
 			editorView.dispatch({
 				changes: {

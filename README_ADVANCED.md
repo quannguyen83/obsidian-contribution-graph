@@ -40,7 +40,7 @@ const calendarData = {
     fromDate: from, // from date, yyyy-MM-dd
     toDate: to // to date, yyyy-MM-dd
 }
-renderContributionGraph(this.container, calendarData)
+renderSketchContributionGraph(this.container, calendarData)
 ```
 
 
@@ -67,7 +67,7 @@ const calendarData = {
     fromDate: from,
     toDate: to
 }
-renderContributionGraph(this.container, calendarData)
+renderSketchContributionGraph(this.container, calendarData)
 ```
 
 ### Week track graph for current month
@@ -99,7 +99,7 @@ const calendarData = {
     fromDate: from,
     toDate: to
 }
-renderContributionGraph(this.container, calendarData)
+renderSketchContributionGraph(this.container, calendarData)
 ```
 
 ### week track graph for current week
@@ -142,7 +142,7 @@ const calendarData = {
     fromDate: from,
     toDate: to
 }
-renderContributionGraph(this.container, calendarData)
+renderSketchContributionGraph(this.container, calendarData)
 
 ```
 
@@ -168,7 +168,7 @@ const calendarData = {
     title: 'Contributions in the last 365 days ',
     data: data
 }
-renderContributionGraph(this.container, calendarData)
+renderSketchContributionGraph(this.container, calendarData)
 ```
 ### Settings for the week track grapg
 #### Begin with Monday
@@ -197,7 +197,7 @@ const calendarData = {
     toDate: to,
     startOfWeek: 1 // set to 1 means start with monday
 }
-renderContributionGraph(this.container, calendarData)
+renderSketchContributionGraph(this.container, calendarData)
 ```
 
 #### Customize cell click event
@@ -228,7 +228,7 @@ const calendarData = {
 		app.internalPlugins.plugins['global-search'].instance.openGlobalSearch(key)
     },
 }
-renderContributionGraph(this.container, calendarData)
+renderSketchContributionGraph(this.container, calendarData)
 ```
 #### Customize Cells
 
@@ -289,7 +289,7 @@ const calendarData = {
 		},
 	]
 }
-renderContributionGraph(this.container, calendarData)
+renderSketchContributionGraph(this.container, calendarData)
 ```
 
 #### Customize inner text
@@ -336,7 +336,7 @@ const calendarData = {
 	    }
     ]
 }
-renderContributionGraph(this.container, calendarData)
+renderSketchContributionGraph(this.container, calendarData)
 ```
 
 ## Use Month Track Graph 
@@ -366,7 +366,7 @@ const options = {
     toDate: to,
     graphType: "month-track" // set this field value as 'month-track'
 }
-renderContributionGraph(this.container, options)
+renderSketchContributionGraph(this.container, options)
 ```
 
 ## Use Calendar Graph
