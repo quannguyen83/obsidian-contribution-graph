@@ -3,7 +3,7 @@
   "name": "Contribution Graph",
   "version": "0.12.0",
   "minAppVersion": "1.3.0",
-  "description": "Generate a interactive heatmap graph to visualize and track your productivity",
+  "description": "Interactive heatmaps with optional Excalidraw-style cells and fills. Fork of vran-dev's Contribution Graph.",
   "author": "vran",
   "authorUrl": "https://github.com/vran-dev",
   "isDesktopOnly": false,
