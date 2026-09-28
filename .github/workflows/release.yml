@@ -2,33 +2,57 @@ name: Release Obsidian plugin
 
 on:
   push:
-    tags:
-      - "*"
+    branches: [master]
+    paths: [manifest.json]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: plugin-release
+  cancel-in-progress: false
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v3
-
-      - name: Use Node.js
-        uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: "18.x"
-
-      - name: Build plugin
+          node-version: '22'
+          cache: npm
+      - name: Install, test and build
         run: |
-          npm install
+          npm ci
+          node tests/sketch-smoke.cjs
           npm run build
-
-      - name: Create release
+      - name: Publish BRAT release
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        shell: bash
         run: |
-          tag="${GITHUB_REF#refs/tags/}"
+          version=$(node -p "require('./manifest.json').version")
+          node -e "if(require('./package.json').version !== require('./manifest.json').version) process.exit(1)"
+          if gh release view "$version" >/dev/null 2>&1; then
+            echo "Release $version already exists; leaving it unchanged."
+            exit 0
+          fi
+          cat > release-notes.md <<'NOTES'
+          Adds optional Excalidraw-style heatmap cells to Contribution Graph.
 
-          gh release create "$tag" \
-            --title="$tag" \
-            --draft \
-            main.js manifest.json styles.css
+          - Solid, Hachure and Cross-hatch fills.
+          - Architect, Artist and Cartoonist sloppiness.
+          - Thin, Medium and Thick strokes.
+          - Available under Style Settings → Drawing style → Excalidraw-style.
+          - Supports all three layouts and color legends; Standard remains the default.
+
+          BRAT repository: `quannguyen83/obsidian-contribution-graph`.
+          This fork retains the `contribution-graph` plugin ID and replaces the upstream installation.
+          Upstream: vran-dev/obsidian-contribution-graph. Drawing options adapted from Excalidraw using Rough.js.
+
+          Validation: TypeScript build and DOM regression checks passed. Not yet visually verified inside Obsidian.
+          NOTES
+          gh release create "$version" main.js manifest.json styles.css \
+            --target "$GITHUB_SHA" --title "$version — Excalidraw-style heatmap" \
+            --notes-file release-notes.md --latest
